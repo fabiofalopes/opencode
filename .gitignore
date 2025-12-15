@@ -1,0 +1,78 @@
+# Git ignore for OpenCode configuration
+
+# Session data and temporary files
+.session/
+*.session
+.tmp/
+.cache/
+
+# Sensitive environment files
+.env
+.env.local
+*.key
+*.pem
+secrets.json
+
+# API keys and tokens
+*_API_KEY*
+*_TOKEN*
+*_SECRET*
+
+# Backup files
+*.bak
+*.backup
+*.old
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules and lock files
+node_modules/
+bun.lock
+package-lock.json
+yarn.lock
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+
+# Log files
+*.log
+logs/
+
+# Build artifacts
+dist/
+build/
+*.compiled
+
+# Temporary editing files
+*.tmp
+*.temp
+
+# Docker volumes
+.docker/
+docker-compose.override.yml
+
+# Archive folder - contains historical files with potential secrets
+archive/
+
+# Hub folder - cloned reference repos (gitignored)
+hub/*/
+!hub/README.md
+
+# Personal notes
+PERSONAL_NOTES.md
+TODO_PRIVATE.md
+scratch.md
