@@ -1,0 +1,58 @@
+{
+  "gemini": {
+    "description": "Primary: Google Gemini 3 (Multimodal & Thinking)",
+    "model": "google/gemini-3-pro",
+    "agents": {
+      "build": "google/gemini-3-pro",
+      "plan": "google/gemini-3-flash-high",
+      "code": "google/gemini-3-pro",
+      "research": "google/gemini-3-pro-high",
+      "thinking": "google/gemini-3-pro-high",
+      "deep": "google/gemini-3-pro",
+      "know": "google/gemini-3-flash",
+      "opencode-config-manager": "google/gemini-3-flash"
+    }
+  },
+  "grok": {
+    "description": "Secondary: OpenCode Grok (Free/Unlimited)",
+    "model": "opencode/grok-codefast-2",
+    "agents": {
+      "build": "opencode/grok-codefast-2",
+      "plan": "opencode/grok-codefast-2",
+      "code": "opencode/grok-codefast-2",
+      "research": "opencode/grok-codefast-2",
+      "thinking": "opencode/grok-codefast-2",
+      "deep": "opencode/grok-codefast-2",
+      "know": "opencode/grok-codefast-2",
+      "opencode-config-manager": "opencode/grok-codefast-2"
+    }
+  },
+  "openrouter-free": {
+    "description": "Fallback: OpenRouter Free Models",
+    "model": "openrouter/google/gemini-2.0-flash-exp:free",
+    "agents": {
+      "build": "openrouter/google/gemini-2.0-flash-exp:free",
+      "plan": "openrouter/google/gemini-2.0-flash-exp:free",
+      "code": "openrouter/google/gemini-2.0-flash-exp:free",
+      "research": "openrouter/google/gemini-2.0-flash-exp:free",
+      "thinking": "openrouter/google/gemini-2.0-flash-exp:free",
+      "deep": "openrouter/google/gemini-2.0-flash-exp:free",
+      "know": "openrouter/google/gemini-2.0-flash-exp:free",
+      "opencode-config-manager": "openrouter/google/gemini-2.0-flash-exp:free"
+    }
+  },
+  "copilot": {
+    "description": "Legacy: GitHub Copilot (Subscription)",
+    "model": "github-copilot/claude-sonnet-4.5",
+    "agents": {
+      "build": "github-copilot/claude-sonnet-4.5",
+      "plan": "github-copilot/claude-haiku-4.5",
+      "code": "github-copilot/gpt-5.1-codex",
+      "research": "github-copilot/claude-opus-4.5",
+      "thinking": "github-copilot/claude-sonnet-4.5",
+      "deep": "github-copilot/claude-sonnet-4.5",
+      "know": "github-copilot/claude-haiku-4.5",
+      "opencode-config-manager": "github-copilot/claude-sonnet-4.5"
+    }
+  }
+}

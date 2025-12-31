@@ -1,0 +1,44 @@
+{
+  "sequential_thinking": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "mcp/sequentialthinking"
+    ],
+    "enabled": true,
+    "timeout": 10000
+  },
+  "memory": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "-v",
+      "/Users/fabiofalopes/mcp-memory:/data",
+      "mcp/memory"
+    ],
+    "enabled": true,
+    "timeout": 10000
+  },
+  "memory_vector_qdrant": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "-e",
+      "QDRANT_URL={env:QDRANT_URL}",
+      "-e",
+      "QDRANT_API_KEY={env:QDRANT_API_KEY}",
+      "mcp/qdrant"
+    ],
+    "enabled": true,
+    "timeout": 10000
+  }
+}

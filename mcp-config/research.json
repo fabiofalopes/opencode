@@ -1,0 +1,99 @@
+{
+  "wikipedia": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "mcp/wikipedia-mcp"
+    ],
+    "enabled": true,
+    "timeout": 10000
+  },
+  "arxiv": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "-e",
+      "ARXIV_STORAGE_PATH",
+      "-v",
+      "/Users/fabiofalopes/arxiv-papers:/papers",
+      "mcp/arxiv-mcp-server"
+    ],
+    "environment": {
+      "ARXIV_STORAGE_PATH": "/papers"
+    },
+    "enabled": true,
+    "timeout": 10000
+  },
+  "paper_search": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "mcp/paper-search"
+    ],
+    "enabled": true,
+    "timeout": 10000
+  },
+  "hackernews": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "mcp/hackernews-mcp"
+    ],
+    "enabled": true,
+    "timeout": 10000
+  },
+  "research_scraper_firecrawl": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "-e",
+      "FIRECRAWL_API_KEY={env:FIRECRAWL_API_KEY}",
+      "mcp/firecrawl"
+    ],
+    "enabled": true,
+    "timeout": 60000
+  },
+  "research_search_searxng": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "--network",
+      "host",
+      "-e",
+      "SEARXNG_BASE_URL={env:SEARXNG_BASE_URL}",
+      "mcp/searxng"
+    ],
+    "enabled": true,
+    "timeout": 30000
+  },
+  "research_browser_rag": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "mcp/rag-web-browser"
+    ],
+    "enabled": true,
+    "timeout": 30000
+  }
+}

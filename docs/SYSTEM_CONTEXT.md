@@ -7,8 +7,14 @@ This document provides system-level context that the agent should be aware of.
 ### OpenCode Installation
 - **Location**: `~/.config/opencode/`
 - **Version**: 1.0.10
-- **Config**: `opencode.json`
+- **Config**: `opencode.json` (Generated via Profiles)
 - **Agent Dir**: `~/.config/opencode/agent/`
+
+### Model Profiles
+- **Gemini** (Default): Google Gemini 3 Pro/Flash
+- **Grok**: OpenCode Free Tier
+- **OpenRouter**: Free endpoints
+- **Copilot**: GitHub Subscription
 
 ### Active MCP Servers
 
