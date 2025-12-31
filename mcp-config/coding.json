@@ -7,7 +7,7 @@
       "-i",
       "--rm",
       "-v",
-      "/Users/fabiofalopes/mcp-code:/workspace",
+      "/home/fabio/mcp-code:/workspace",
       "mcp/mcp-code-interpreter"
     ],
     "enabled": true,

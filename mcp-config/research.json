@@ -21,7 +21,7 @@
       "-e",
       "ARXIV_STORAGE_PATH",
       "-v",
-      "/Users/fabiofalopes/arxiv-papers:/papers",
+      "/home/fabio/arxiv-papers:/papers",
       "mcp/arxiv-mcp-server"
     ],
     "environment": {
@@ -62,9 +62,12 @@
       "-i",
       "--rm",
       "-e",
-      "FIRECRAWL_API_KEY={env:FIRECRAWL_API_KEY}",
+      "FIRECRAWL_API_KEY",
       "mcp/firecrawl"
     ],
+    "environment": {
+      "FIRECRAWL_API_KEY": "{env:FIRECRAWL_API_KEY}"
+    },
     "enabled": true,
     "timeout": 60000
   },
@@ -78,22 +81,26 @@
       "--network",
       "host",
       "-e",
-      "SEARXNG_BASE_URL={env:SEARXNG_BASE_URL}",
-      "mcp/searxng"
+      "SEARXNG_ENGINE_API_BASE_URL",
+      "overtlids/mcp-searxng-enhanced"
     ],
+    "environment": {
+      "SEARXNG_ENGINE_API_BASE_URL": "{env:SEARXNG_BASE_URL}"
+    },
     "enabled": true,
     "timeout": 30000
   },
   "research_browser_rag": {
     "type": "local",
     "command": [
-      "docker",
-      "run",
-      "-i",
-      "--rm",
-      "mcp/rag-web-browser"
+      "npx",
+      "-y",
+      "@apify/mcp-server-rag-web-browser"
     ],
-    "enabled": true,
+    "environment": {
+      "APIFY_TOKEN": "{env:APIFY_TOKEN}"
+    },
+    "enabled": false,
     "timeout": 30000
   }
 }

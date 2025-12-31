@@ -7,10 +7,10 @@
       "-i",
       "--rm",
       "-p",
-      "8000:8000",
+      "8090:8000",
       "ghcr.io/sitbon/magg"
     ],
-    "enabled": true,
+    "enabled": false,
     "timeout": 30000
   },
   "context_manager_llm": {
@@ -19,7 +19,7 @@
       "uvx",
       "llm-context"
     ],
-    "enabled": true,
+    "enabled": false,
     "timeout": 30000
   }
 }

@@ -19,7 +19,7 @@
       "-i",
       "--rm",
       "-v",
-      "/Users/fabiofalopes/mcp-memory:/data",
+      "/home/fabio/mcp-memory:/data",
       "mcp/memory"
     ],
     "enabled": true,
@@ -33,11 +33,15 @@
       "-i",
       "--rm",
       "-e",
-      "QDRANT_URL={env:QDRANT_URL}",
+      "QDRANT_URL",
       "-e",
-      "QDRANT_API_KEY={env:QDRANT_API_KEY}",
+      "QDRANT_API_KEY",
       "mcp/qdrant"
     ],
+    "environment": {
+      "QDRANT_URL": "{env:QDRANT_URL}",
+      "QDRANT_API_KEY": "{env:QDRANT_API_KEY}"
+    },
     "enabled": true,
     "timeout": 10000
   }

@@ -9,18 +9,14 @@
       "xiaoyao9184/marker"
     ],
     "enabled": true,
-    "timeout": 60000
+    "timeout": 120000
   },
   "content_pdf_reader": {
     "type": "local",
     "command": [
-      "docker",
-      "run",
-      "-i",
-      "--rm",
-      "-v",
-      "${PWD}:/pdfs",
-      "mcp/pdf-reader"
+      "npx",
+      "-y",
+      "@modelcontextprotocol/server-pdf"
     ],
     "enabled": true,
     "timeout": 30000
