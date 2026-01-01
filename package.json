@@ -1,6 +1,14 @@
 {
   "devDependencies": {
-    "@types/node": "^24.9.2"
+    "@types/node": "^24.9.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "switch:gemini": "ts-node scripts/switch-profile.ts --profile=gemini",
+    "switch:grok": "ts-node scripts/switch-profile.ts --profile=grok",
+    "switch:free": "ts-node scripts/switch-profile.ts --profile=openrouter-free",
+    "switch:copilot": "ts-node scripts/switch-profile.ts --profile=copilot"
   },
   "dependencies": {
     "@ai-sdk/openai-compatible": "^1.0.27",

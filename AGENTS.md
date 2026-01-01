@@ -19,70 +19,49 @@ This is the OpenCode configuration directory at `~/.config/opencode/`. It contai
 
 ## Model Configuration
 
-**SIMPLE RULE**: Edit `opencode.json` directly. No scripts needed.
+**SIMPLE RULE**: Use the Profile System. Do NOT edit `opencode.json` manually.
 
-### 🎯 Where to Edit Models
+### 🎯 How to Switch Models
 
-Open `opencode.json` and find these lines:
+We use a **Profile System** to manage model configurations. This allows instant switching between providers (e.g., Copilot vs. Gemini vs. Free Tier) without editing files.
 
-| Agent | Line | Current Model |
-|-------|------|---------------|
-| **Global** | Line 8 | `"model": "github-copilot/claude-sonnet-4.5"` |
-| **build** | Line 244 | `"model": "github-copilot/claude-sonnet-4.5"` |
-| **plan** | Line 268 | `"model": "github-copilot/claude-haiku-4.5"` |
-| **code** | Line 294 | `"model": "github-copilot/gpt-5.1-codex"` |
-| **research** | Line 318 | `"model": "github-copilot/claude-opus-4.5"` |
-| **thinking** | Line 346 | `"model": "github-copilot/claude-sonnet-4.5"` |
+**Commands:**
 
-### 🔄 Two Configurations
+| Command | Profile | Description |
+|---------|---------|-------------|
+| `npm run switch:gemini` | **Gemini 3** | **Primary.** Google's Gemini 3 Pro/Flash. Best for multimodal & thinking. |
+| `npm run switch:grok` | **Grok** | **Secondary.** OpenCode's free tier. Fast but has limits. |
+| `npm run switch:free` | **OpenRouter** | **Fallback.** Free endpoints (Gemini 2.0 Flash Exp). |
+| `npm run switch:copilot` | **Copilot** | **Legacy.** GitHub Copilot subscription models. |
 
-**PRIMARY (GitHub Copilot - Uses Your Subscription):**
-```json
-"model": "github-copilot/claude-sonnet-4.5"    // Global + build + thinking
-"model": "github-copilot/claude-haiku-4.5"     // plan
-"model": "github-copilot/gpt-5.1-codex"        // code
-"model": "github-copilot/claude-opus-4.5"      // research
-```
+### ⚙️ Customizing Profiles
 
-**FALLBACK (OpenCode Free - When GitHub Access Lost):**
-```json
-"model": "opencode/grok-codefast-2"            // All agents (single model)
-```
+To change which models are used in a profile:
+1. Edit `profiles.json`.
+2. Run the switch command again (e.g., `npm run switch:gemini`) to apply changes.
 
-### 💡 How to Switch
-
-**Option 1 - Manual (Recommended for selective changes):**
-1. Open `opencode.json`
-2. Go to lines 8, 244, 268, 294, 318, 346
-3. Change model strings directly
-4. Save
-
-**Option 2 - Find & Replace (For full switch to fallback):**
-1. Open `opencode.json` 
-2. Find: `"github-copilot/claude-sonnet-4.5"`
-3. Replace with: `"opencode/grok-codefast-2"`
-4. Find: `"github-copilot/claude-haiku-4.5"`
-5. Replace with: `"opencode/grok-codefast-2"`
-6. Find: `"github-copilot/gpt-5.1-codex"`
-7. Replace with: `"opencode/grok-codefast-2"`
-8. Find: `"github-copilot/claude-opus-4.5"`
-9. Replace with: `"opencode/grok-codefast-2"`
-10. Save
-
-**That's it. No scripts. No complexity.**
+**Do NOT edit `opencode.json` directly for model changes.** It will be overwritten by the profile system.
 
 ### 📋 Model Details
 
-**GitHub Copilot Models (Primary):**
-- `claude-sonnet-4.5` - Balanced, general purpose
-- `claude-haiku-4.5` - Fast, efficient for planning
-- `gpt-5.1-codex` - Code-specialized
-- `claude-opus-4.5` - Most powerful, research
+**Gemini 3 (Primary):**
+- `gemini-3-pro` - High intelligence, multimodal
+- `gemini-3-flash` - Fast, efficient
+- `gemini-3-pro-high` - High thinking capability
 
-**OpenCode Models (Fallback):**
+**OpenCode Models (Secondary):**
 - `grok-codefast-2` - Free tier, single model for all tasks
 
+**GitHub Copilot Models (Legacy):**
+- `claude-sonnet-4.5` - Balanced
+- `claude-haiku-4.5` - Fast
+- `gpt-5.1-codex` - Code-specialized
+- `claude-opus-4.5` - Research
+
 ## MCP Server Usage
+
+### Advanced Management
+We now use a modular configuration system. See `@docs/MCP_ADVANCED_ARCHITECTURE.md` for details on managing servers via `scripts/manage-mcp.ts`.
 
 ### When to Use MCP Tools
 

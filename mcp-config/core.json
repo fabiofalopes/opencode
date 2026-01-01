@@ -1,0 +1,42 @@
+{
+  "context7": {
+    "type": "local",
+    "command": [
+      "npx",
+      "-y",
+      "@dolasoft/stdio-context7-mcp-server"
+    ],
+    "enabled": true,
+    "timeout": 10000
+  },
+  "gh_grep": {
+    "type": "remote",
+    "url": "https://mcp.grep.app",
+    "enabled": true,
+    "timeout": 10000
+  },
+  "duckduckgo": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "mcp/duckduckgo"
+    ],
+    "enabled": true,
+    "timeout": 10000
+  },
+  "fetch": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "mcp/fetch"
+    ],
+    "enabled": true,
+    "timeout": 10000
+  }
+}

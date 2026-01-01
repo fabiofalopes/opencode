@@ -1,0 +1,42 @@
+{
+  "integration_suite_aio": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "--env-file",
+      ".env",
+      "ghcr.io/athapong/aio-mcp"
+    ],
+    "enabled": false,
+    "timeout": 30000
+  },
+  "integration_notes_hackmd": {
+    "type": "local",
+    "command": [
+      "npx",
+      "-y",
+      "hackmd-mcp"
+    ],
+    "environment": {
+      "HACKMD_API_TOKEN": "{env:HACKMD_API_TOKEN}"
+    },
+    "enabled": false,
+    "timeout": 30000
+  },
+  "integration_github_repos": {
+    "type": "local",
+    "command": [
+      "npx",
+      "-y",
+      "github-repos-manager-mcp"
+    ],
+    "environment": {
+      "GITHUB_TOKEN": "{env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+    },
+    "enabled": false,
+    "timeout": 30000
+  }
+}
