@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+# Git post-merge hook for OpenCode config
+# Automatically regenerates opencode.json after git pull
+#
+# To enable: npm run setup:hooks
+# To disable: git config --unset core.hooksPath
+#
+
+echo ""
+echo "🔄 Post-merge: Checking OpenCode configuration..."
+echo ""
+
+# Change to config directory
+cd "$(dirname "$0")/.." || exit 0
+
+# Check if machines.json exists (multi-machine setup)
+if [ ! -f "machines.json" ]; then
+    echo "   No multi-machine config found. Skipping."
+    exit 0
+fi
+
+# Check if there's an active machine
+ACTIVE_MACHINE=$(grep -o '"_active"[[:space:]]*:[[:space:]]*"[^"]*"' machines.json | sed 's/.*: *"\([^"]*\)".*/\1/')
+
+if [ -z "$ACTIVE_MACHINE" ]; then
+    echo "⚠️  No active machine set. Run: npm run detect:machine:set"
+    exit 0
+fi
+
+# Check if opencode.template.json or machines.json changed
+CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD)
+
+if echo "$CHANGED_FILES" | grep -qE "(opencode\.template\.json|machines\.json|mcp-config/)"; then
+    echo "   Config files changed - regenerating opencode.json..."
+    npm run refresh --silent
+    echo "✅ Configuration updated for machine: $ACTIVE_MACHINE"
+else
+    echo "   No config changes detected. Skipping regeneration."
+fi

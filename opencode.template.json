@@ -8,7 +8,7 @@
     "docs/SYSTEM_CONTEXT.md",
     "docs/MCP_TOOLS.md"
   ],
-  "model": "github-copilot/claude-sonnet-4.5",
+  "model": "github-copilot/gpt-5.1-codex",
   "mcp": {
     "ollama_bridge": {
       "type": "local",
@@ -71,7 +71,7 @@
         "-i",
         "--rm",
         "-v",
-        "/home/fabio/mcp-code:/workspace",
+        "{machine:mcp-code}:/workspace",
         "mcp/mcp-code-interpreter"
       ],
       "enabled": true,
@@ -205,9 +205,9 @@
       ],
       "environment": {
         "OBSIDIAN_HOST": "host.docker.internal",
-        "OBSIDIAN_API_KEY": "YOUR_OBSIDIAN_API_KEY"
+        "OBSIDIAN_API_KEY": "{env:OBSIDIAN_API_KEY}"
       },
-      "enabled": false,
+      "enabled": true,
       "timeout": 10000
     },
     "integration_suite_aio": {
@@ -270,7 +270,7 @@
         "-i",
         "--rm",
         "-v",
-        "/home/fabio/mcp-memory:/data",
+        "{machine:mcp-memory}:/data",
         "mcp/memory"
       ],
       "enabled": true,
@@ -341,7 +341,7 @@
         "-e",
         "ARXIV_STORAGE_PATH",
         "-v",
-        "/home/fabio/arxiv-papers:/papers",
+        "{machine:arxiv-papers}:/papers",
         "mcp/arxiv-mcp-server"
       ],
       "environment": {
@@ -761,7 +761,8 @@
           "tools": {
             "hackernews": false,
             "paper_search": false
-          }
+          },
+          "_warning": "Google-hosted Claude may have auth issues with antigravity plugin. Prefer native Gemini models or use GitHub Copilot for Claude."
         },
         "gemini-claude-sonnet-4-5-thinking": {
           "id": "gemini-claude-sonnet-4-5-thinking",
@@ -1046,7 +1047,7 @@
     "code_interpreter": true,
     "github": false,
     "perplexity": true,
-    "obsidian": false,
+    "obsidian": true,
     "arxiv": true,
     "paper_search": true,
     "hackernews": true
@@ -1061,7 +1062,7 @@
       "description": "Full-featured development agent with all tools enabled",
       "mode": "primary",
       "temperature": 0.3,
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "github-copilot/gpt-5.1-codex",
       "tools": {
         "context7": true,
         "gh_grep": true,
@@ -1163,7 +1164,7 @@
       "description": "Problem-solving agent using structured reasoning and memory",
       "mode": "subagent",
       "temperature": 0.1,
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "github-copilot/claude-haiku-4.5",
       "tools": {
         "write": false,
         "edit": false,
@@ -1231,7 +1232,7 @@
       "description": "Expert in OpenCode configuration management and MCP server setup",
       "mode": "primary",
       "temperature": 0.1,
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "github-copilot/gpt-5.1-codex",
       "tools": {
         "write": true,
         "edit": true,
@@ -1252,6 +1253,92 @@
         "edit": "allow",
         "bash": "allow",
         "webfetch": "allow"
+      }
+    },
+    "hiker": {
+      "description": "Cyber security lab agent for offensive/defensive research and education",
+      "mode": "primary",
+      "temperature": 0.4,
+      "model": "github-copilot/claude-haiku-4.5",
+      "tools": {
+        "write": true,
+        "edit": false,
+        "bash": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "list": true,
+        "webfetch": true,
+        "context7": true,
+        "gh_grep": true,
+        "fetch": true,
+        "duckduckgo": true,
+        "google_search": true,
+        "memory": true,
+        "sequential_thinking": true,
+        "code_interpreter": false,
+        "wikipedia": true,
+        "arxiv": true,
+        "paper_search": true,
+        "perplexity": true,
+        "hackernews": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "ask",
+        "webfetch": "allow"
+      }
+    },
+    "conductor": {
+      "description": "Primary orchestrator that sequences sub-agents and manages workflow state",
+      "mode": "primary",
+      "temperature": 0.2,
+      "model": "github-copilot/claude-sonnet-4.5",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "sequential_thinking": true,
+        "memory": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
+      }
+    },
+    "scribe": {
+      "description": "Documentation specialist that formats output and maintains logs",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "model": "github-copilot/claude-haiku-4.5",
+      "tools": {
+        "write": true,
+        "read": true,
+        "glob": true,
+        "grep": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
+      }
+    },
+    "policy": {
+      "description": "Validator agent that checks scope, safety, and standards",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "model": "github-copilot/claude-haiku-4.5",
+      "tools": {
+        "write": false,
+        "read": true,
+        "glob": true,
+        "grep": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
       }
     }
   },

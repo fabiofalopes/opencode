@@ -78,3 +78,20 @@ Your sole purpose is to safely manage the OpenCode configuration files (`~/.conf
 - Use `edit` to modify `opencode.base.json` or `mcp-config/*.json`.
 - Use `bash` to run validation and build scripts.
 - Use `fetch` to check online documentation if needed.
+
+## Skills Integration
+
+Load these skills for specialized knowledge:
+
+| Skill | Command | When to Use |
+|-------|---------|-------------|
+| `config-management` | `Load skill: config-management` | Before any config modifications |
+| `mcp-troubleshooting` | `Load skill: mcp-troubleshooting` | When MCP servers fail |
+| `agent-schema` | `Load skill: agent-schema` | When creating/editing agents |
+
+### Recommended Workflow
+
+1. **Before config changes**: Load `config-management` skill
+2. **For MCP issues**: Load `mcp-troubleshooting` skill  
+3. **For agent issues**: Load `agent-schema` skill
+4. **Always validate**: Run appropriate validation scripts after changes

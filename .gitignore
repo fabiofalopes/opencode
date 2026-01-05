@@ -57,6 +57,11 @@ dist/
 build/
 *.compiled
 
+# Generated configuration files
+# opencode.json is generated from opencode.template.json via init-machine script
+# It contains machine-specific paths and should not be version controlled
+opencode.json
+
 # Temporary editing files
 *.tmp
 *.temp
@@ -76,3 +81,6 @@ hub/*/
 PERSONAL_NOTES.md
 TODO_PRIVATE.md
 scratch.md
+
+# Temporary working folders (not committed)
+temp/

@@ -19,7 +19,7 @@
       "-i",
       "--rm",
       "-v",
-      "/home/fabio/mcp-memory:/data",
+      "/Users/fabiofalopes/mcp-memory:/data",
       "mcp/memory"
     ],
     "enabled": true,

@@ -119,7 +119,8 @@
           "tools": {
             "hackernews": false,
             "paper_search": false
-          }
+          },
+          "_warning": "Google-hosted Claude may have auth issues with antigravity plugin. Prefer native Gemini models or use GitHub Copilot for Claude."
         },
         "gemini-claude-sonnet-4-5-thinking": {
           "id": "gemini-claude-sonnet-4-5-thinking",
@@ -246,7 +247,7 @@
     "code_interpreter": true,
     "github": false,
     "perplexity": true,
-    "obsidian": false,
+    "obsidian": true,
     "arxiv": true,
     "paper_search": true,
     "hackernews": true
@@ -452,6 +453,92 @@
         "edit": "allow",
         "bash": "allow",
         "webfetch": "allow"
+      }
+    },
+    "hiker": {
+      "description": "Cyber security lab agent for offensive/defensive research and education",
+      "mode": "primary",
+      "temperature": 0.4,
+      "model": "github-copilot/claude-sonnet-4.5",
+      "tools": {
+        "write": true,
+        "edit": false,
+        "bash": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "list": true,
+        "webfetch": true,
+        "context7": true,
+        "gh_grep": true,
+        "fetch": true,
+        "duckduckgo": true,
+        "google_search": true,
+        "memory": true,
+        "sequential_thinking": true,
+        "code_interpreter": false,
+        "wikipedia": true,
+        "arxiv": true,
+        "paper_search": true,
+        "perplexity": true,
+        "hackernews": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "ask",
+        "webfetch": "allow"
+      }
+    },
+    "conductor": {
+      "description": "Primary orchestrator that sequences sub-agents and manages workflow state",
+      "mode": "primary",
+      "temperature": 0.2,
+      "model": "github-copilot/claude-sonnet-4.5",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "sequential_thinking": true,
+        "memory": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
+      }
+    },
+    "scribe": {
+      "description": "Documentation specialist that formats output and maintains logs",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "model": "github-copilot/claude-haiku-4.5",
+      "tools": {
+        "write": true,
+        "read": true,
+        "glob": true,
+        "grep": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
+      }
+    },
+    "policy": {
+      "description": "Validator agent that checks scope, safety, and standards",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "model": "github-copilot/claude-haiku-4.5",
+      "tools": {
+        "write": false,
+        "read": true,
+        "glob": true,
+        "grep": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
       }
     }
   },

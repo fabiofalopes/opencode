@@ -24,6 +24,17 @@ If `opencode.json` is out of sync or missing MCPs:
 npx ts-node scripts/manage-mcp.ts build
 ```
 
+### 3. Agent Validation Script
+Validates YAML frontmatter in agent `.md` files:
+```bash
+npm run validate:agents
+```
+**Checks performed:**
+- Required `description` field present
+- `tools` field is Record<string, boolean>, not an array
+- `mode` uses valid values (primary, subagent, all)
+- `temperature` is between 0 and 1
+
 ## Common Issues & Solutions
 
 ### Error: "Unknown key 'description'"
@@ -44,6 +55,23 @@ npx ts-node scripts/manage-mcp.ts build
 ### Error: New MCP server not showing up
 **Cause:** You added the file to `mcp-config/` but didn't run the build script.
 **Fix:** Run `npx ts-node scripts/manage-mcp.ts build`.
+
+### Error: "expected record, received array tools"
+**Cause:** The `tools` field in an agent `.md` file was declared as an array instead of a key-value record.
+**Fix:**
+```yaml
+# ❌ WRONG
+tools:
+  - write
+  - edit
+
+# ✅ CORRECT
+tools:
+  write: true
+  edit: true
+```
+Run `npm run validate:agents` to find all affected files.
+See: `docs/AGENT_MD_SCHEMA.md` for full specification.
 
 ## Configuration Hierarchy
 
