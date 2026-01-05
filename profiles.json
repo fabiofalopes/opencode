@@ -1,0 +1,74 @@
+{
+  "zens": {
+    "description": "Primary: OpenCode Zens (Free, Unlimited - Minimax & GLM)",
+    "model": "opencode/minimax-m2.1",
+    "agents": {
+      "build": "opencode/minimax-m2.1",
+      "plan": "opencode/glm-4.7",
+      "code": "opencode/minimax-m2.1",
+      "research": "opencode/glm-4.7",
+      "thinking": "opencode/glm-4.7",
+      "deep": "opencode/minimax-m2.1",
+      "know": "opencode/glm-4.7",
+      "opencode-config-manager": "opencode/minimax-m2.1",
+      "hiker": "opencode/glm-4.7",
+      "conductor": "opencode/minimax-m2.1",
+      "scribe": "opencode/glm-4.7",
+      "policy": "opencode/glm-4.7"
+    }
+  },
+  "gemini": {
+    "description": "Secondary: Google Gemini (Native models only - Free)",
+    "model": "google/gemini-3-pro",
+    "agents": {
+      "build": "google/gemini-3-pro",
+      "plan": "google/gemini-3-flash-high",
+      "code": "google/gemini-3-pro",
+      "research": "google/gemini-3-pro-high",
+      "thinking": "google/gemini-3-pro-high",
+      "deep": "google/gemini-3-pro",
+      "know": "google/gemini-3-flash",
+      "opencode-config-manager": "google/gemini-3-flash",
+      "hiker": "google/gemini-3-flash",
+      "conductor": "google/gemini-3-pro",
+      "scribe": "google/gemini-3-flash",
+      "policy": "google/gemini-3-flash"
+    }
+  },
+  "copilot": {
+    "description": "Tertiary: GitHub Copilot (Subscription - Diversified models)",
+    "model": "github-copilot/gpt-5.1-codex",
+    "agents": {
+      "build": "github-copilot/gpt-5.1-codex",
+      "plan": "github-copilot/claude-haiku-4.5",
+      "code": "github-copilot/gpt-5.1-codex",
+      "research": "github-copilot/claude-opus-4.5",
+      "thinking": "github-copilot/claude-haiku-4.5",
+      "deep": "github-copilot/claude-sonnet-4.5",
+      "know": "github-copilot/claude-haiku-4.5",
+      "opencode-config-manager": "github-copilot/gpt-5.1-codex",
+      "hiker": "github-copilot/claude-haiku-4.5",
+      "conductor": "github-copilot/claude-sonnet-4.5",
+      "scribe": "github-copilot/claude-haiku-4.5",
+      "policy": "github-copilot/claude-haiku-4.5"
+    }
+  },
+  "grok": {
+    "description": "Fallback: OpenCode Grok (Free/Unlimited - Single model)",
+    "model": "opencode/grok-codefast-2",
+    "agents": {
+      "build": "opencode/grok-codefast-2",
+      "plan": "opencode/grok-codefast-2",
+      "code": "opencode/grok-codefast-2",
+      "research": "opencode/grok-codefast-2",
+      "thinking": "opencode/grok-codefast-2",
+      "deep": "opencode/grok-codefast-2",
+      "know": "opencode/grok-codefast-2",
+      "opencode-config-manager": "opencode/grok-codefast-2",
+      "hiker": "opencode/grok-codefast-2",
+      "conductor": "opencode/grok-codefast-2",
+      "scribe": "opencode/grok-codefast-2",
+      "policy": "opencode/grok-codefast-2"
+    }
+  }
+}

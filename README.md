@@ -112,13 +112,27 @@ know      → Research that builds persistent knowledge
 
 ## Configuration
 
+### Model Switching (Profiles)
+
+We use a profile system to switch between providers (Gemini, Grok, Copilot).
+
+```bash
+npm run switch:gemini   # Primary (Gemini 3)
+npm run switch:grok     # Secondary (Free Tier)
+npm run switch:free     # Fallback (OpenRouter)
+npm run switch:copilot  # Legacy (Copilot)
+```
+
+See [PROFILES.md](./docs/PROFILES.md) for details.
+
+### General Configuration
+
 Edit `opencode.json` to:
-- Change models (GitHub Copilot or OpenCode free tier)
 - Enable/disable MCP servers
 - Adjust agent permissions
 - Configure tool access
 
-See [AGENTS.md](./AGENTS.md) for model configuration guide.
+See [AGENTS.md](./AGENTS.md) for agent rules.
 
 ## Documentation
 

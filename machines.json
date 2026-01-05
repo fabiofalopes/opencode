@@ -1,0 +1,41 @@
+{
+  "$schema": "./schemas/machines.schema.json",
+  "_comment": "Machine profiles for multi-platform path resolution. Use 'npm run detect:machine' to identify current machine.",
+  "macos-fabio": {
+    "platform": "darwin",
+    "hostname": "Fabios-MacBook",
+    "description": "Fabio's MacBook Pro - Primary development machine",
+    "paths": {
+      "home": "/Users/fabiofalopes",
+      "mcp-memory": "/Users/fabiofalopes/mcp-memory",
+      "mcp-code": "/Users/fabiofalopes/mcp-code",
+      "arxiv-papers": "/Users/fabiofalopes/arxiv-papers",
+      "obsidian-vault": "/Users/fabiofalopes/Documents/Obsidian"
+    },
+    "mcps": {
+      "memory": true,
+      "code_interpreter": true,
+      "obsidian": false,
+      "github": false
+    }
+  },
+  "linux-fabio": {
+    "platform": "linux",
+    "hostname": "fabio-linux",
+    "description": "Fabio's Linux workstation",
+    "paths": {
+      "home": "/home/fabio",
+      "mcp-memory": "/home/fabio/mcp-memory",
+      "mcp-code": "/home/fabio/mcp-code",
+      "arxiv-papers": "/home/fabio/arxiv-papers",
+      "obsidian-vault": "/home/fabio/Documents/Obsidian"
+    },
+    "mcps": {
+      "memory": true,
+      "code_interpreter": true,
+      "obsidian": false,
+      "github": false
+    }
+  },
+  "_active": "macos-fabio"
+}

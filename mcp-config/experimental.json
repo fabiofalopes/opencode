@@ -1,0 +1,56 @@
+{
+  "brave": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "-e",
+      "BRAVE_API_KEY",
+      "mcp/brave-search"
+    ],
+    "environment": {
+      "BRAVE_API_KEY": "dummy-key-not-used"
+    },
+    "enabled": false,
+    "timeout": 10000
+  },
+  "perplexity": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "-e",
+      "PERPLEXITY_API_KEY",
+      "mcp/perplexity-ask"
+    ],
+    "environment": {
+      "PERPLEXITY_API_KEY": "{env:PERPLEXITY_API_KEY}"
+    },
+    "enabled": true,
+    "timeout": 10000
+  },
+  "obsidian": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "-e",
+      "OBSIDIAN_HOST",
+      "-e",
+      "OBSIDIAN_API_KEY",
+      "mcp/obsidian"
+    ],
+    "environment": {
+      "OBSIDIAN_HOST": "host.docker.internal",
+      "OBSIDIAN_API_KEY": "{env:OBSIDIAN_API_KEY}"
+    },
+    "enabled": true,
+    "timeout": 10000
+  }
+}

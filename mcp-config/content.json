@@ -1,0 +1,24 @@
+{
+  "content_pdf_marker": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "xiaoyao9184/marker"
+    ],
+    "enabled": true,
+    "timeout": 120000
+  },
+  "content_pdf_reader": {
+    "type": "local",
+    "command": [
+      "npx",
+      "-y",
+      "@modelcontextprotocol/server-pdf"
+    ],
+    "enabled": true,
+    "timeout": 30000
+  }
+}

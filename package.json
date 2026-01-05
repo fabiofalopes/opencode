@@ -1,9 +1,29 @@
 {
   "devDependencies": {
-    "@types/node": "^24.9.2"
+    "@types/node": "^24.9.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "postinstall": "ts-node scripts/postinstall.ts",
+    "validate": "ts-node scripts/validate-profiles.ts",
+    "validate:agents": "ts-node scripts/validate-agents.ts",
+    "switch:zens": "npm run validate && ts-node scripts/switch-profile.ts --profile=zens",
+    "switch:gemini": "npm run validate && ts-node scripts/switch-profile.ts --profile=gemini",
+    "switch:copilot": "npm run validate && ts-node scripts/switch-profile.ts --profile=copilot",
+    "switch:grok": "npm run validate && ts-node scripts/switch-profile.ts --profile=grok",
+    "detect:machine": "ts-node scripts/detect-machine.ts",
+    "detect:machine:set": "ts-node scripts/detect-machine.ts --set",
+    "init:machine": "ts-node scripts/init-machine.ts",
+    "init:machine:macos": "ts-node scripts/init-machine.ts --machine=macos-fabio",
+    "init:machine:linux": "ts-node scripts/init-machine.ts --machine=linux-fabio",
+    "switch:machine": "npm run init:machine",
+    "refresh": "ts-node scripts/init-machine.ts",
+    "setup:hooks": "git config core.hooksPath .githooks && echo '✅ Git hooks enabled. Post-merge will auto-refresh config.'",
+    "disable:hooks": "git config --unset core.hooksPath && echo '✅ Git hooks disabled.'"
   },
   "dependencies": {
     "@ai-sdk/openai-compatible": "^1.0.27",
-    "@opencode-ai/plugin": "1.0.218"
+    "@opencode-ai/plugin": "1.1.2"
   }
 }

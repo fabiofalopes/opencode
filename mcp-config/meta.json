@@ -1,0 +1,25 @@
+{
+  "meta_aggregator_magg": {
+    "type": "local",
+    "command": [
+      "docker",
+      "run",
+      "-i",
+      "--rm",
+      "-p",
+      "8090:8000",
+      "ghcr.io/sitbon/magg"
+    ],
+    "enabled": false,
+    "timeout": 30000
+  },
+  "context_manager_llm": {
+    "type": "local",
+    "command": [
+      "uvx",
+      "llm-context"
+    ],
+    "enabled": false,
+    "timeout": 30000
+  }
+}

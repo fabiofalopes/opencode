@@ -19,11 +19,56 @@ tools:
 permission:
   edit: allow
   bash:
-    "git *": ask
+    # Git - keep asking
+    "git commit *": ask
+    "git push *": ask
+    "git pull *": ask
+    "git checkout *": ask
+    "git *": allow  # status, diff, log, etc.
+    
+    # Package managers
     "npm *": allow
     "yarn *": allow
     "bun *": allow
+    "pip *": allow
+    
+    # Python
     "python *": allow
+    
+    # Navigation & fetching - ALLOW (your main pain point)
+    "ls *": allow
+    "curl *": allow
+    "wget *": allow
+    "find *": allow
+    "tree *": allow
+    
+    # SENSITIVE FILE READS - Block these specifically
+    "cat *.env*": deny
+    "cat */.env*": deny
+    "cat .zshrc": deny
+    "cat .bashrc": deny
+    "cat .profile": deny
+    "cat ~/.ssh/*": deny
+    "cat *credentials*": deny
+    "cat *secret*": deny
+    "grep * *.env*": deny
+    "grep * .zshrc": deny
+    "grep * .bashrc": deny
+    
+    # General file reading - ASK (compromise)
+    "cat *": ask
+    "head *": ask
+    "tail *": ask
+    "grep *": ask
+    
+    # File mutations - keep asking
+    "rm *": ask
+    "mv *": ask
+    "cp *": ask
+    "chmod *": ask
+    "chown *": ask
+    
+    # Catch-all
     "*": ask
   webfetch: deny
 ---

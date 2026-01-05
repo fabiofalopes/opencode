@@ -1,0 +1,1353 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "opencode-google-antigravity-auth"
+  ],
+  "instructions": [
+    "AGENTS.md",
+    "docs/SYSTEM_CONTEXT.md",
+    "docs/MCP_TOOLS.md"
+  ],
+  "model": "github-copilot/gpt-5.1-codex",
+  "mcp": {
+    "ollama_bridge": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "ollama-mcp-server"
+      ],
+      "enabled": false,
+      "timeout": 10000
+    },
+    "qdrant_mcp": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "QDRANT_URL",
+        "-e",
+        "OPENAI_API_KEY",
+        "delorenj/mcp-qdrant-memory"
+      ],
+      "environment": {
+        "QDRANT_URL": "http://host.docker.internal:6333",
+        "OPENAI_API_KEY": "needs-configuration-or-local-alternative"
+      },
+      "enabled": false,
+      "timeout": 10000
+    },
+    "neo4j_mcp": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "NEO4J_URI",
+        "-e",
+        "NEO4J_USERNAME",
+        "-e",
+        "NEO4J_PASSWORD",
+        "mcp/neo4j-memory"
+      ],
+      "environment": {
+        "NEO4J_URI": "bolt://host.docker.internal:7687",
+        "NEO4J_USERNAME": "neo4j",
+        "NEO4J_PASSWORD": "password"
+      },
+      "enabled": false,
+      "timeout": 10000
+    },
+    "code_interpreter": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-v",
+        "{machine:mcp-code}:/workspace",
+        "mcp/mcp-code-interpreter"
+      ],
+      "enabled": true,
+      "timeout": 10000
+    },
+    "github": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "enabled": false,
+      "timeout": 10000
+    },
+    "content_pdf_marker": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "xiaoyao9184/marker"
+      ],
+      "enabled": true,
+      "timeout": 120000
+    },
+    "content_pdf_reader": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-pdf"
+      ],
+      "enabled": true,
+      "timeout": 30000
+    },
+    "context7": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@dolasoft/stdio-context7-mcp-server"
+      ],
+      "enabled": true,
+      "timeout": 10000
+    },
+    "gh_grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app",
+      "enabled": true,
+      "timeout": 10000
+    },
+    "duckduckgo": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "mcp/duckduckgo"
+      ],
+      "enabled": true,
+      "timeout": 10000
+    },
+    "fetch": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "mcp/fetch"
+      ],
+      "enabled": true,
+      "timeout": 10000
+    },
+    "brave": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "BRAVE_API_KEY",
+        "mcp/brave-search"
+      ],
+      "environment": {
+        "BRAVE_API_KEY": "dummy-key-not-used"
+      },
+      "enabled": false,
+      "timeout": 10000
+    },
+    "perplexity": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "PERPLEXITY_API_KEY",
+        "mcp/perplexity-ask"
+      ],
+      "environment": {
+        "PERPLEXITY_API_KEY": "{env:PERPLEXITY_API_KEY}"
+      },
+      "enabled": true,
+      "timeout": 10000
+    },
+    "obsidian": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "OBSIDIAN_HOST",
+        "-e",
+        "OBSIDIAN_API_KEY",
+        "mcp/obsidian"
+      ],
+      "environment": {
+        "OBSIDIAN_HOST": "host.docker.internal",
+        "OBSIDIAN_API_KEY": "{env:OBSIDIAN_API_KEY}"
+      },
+      "enabled": true,
+      "timeout": 10000
+    },
+    "integration_suite_aio": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "--env-file",
+        ".env",
+        "ghcr.io/athapong/aio-mcp"
+      ],
+      "enabled": false,
+      "timeout": 30000
+    },
+    "integration_notes_hackmd": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "hackmd-mcp"
+      ],
+      "environment": {
+        "HACKMD_API_TOKEN": "{env:HACKMD_API_TOKEN}"
+      },
+      "enabled": false,
+      "timeout": 30000
+    },
+    "integration_github_repos": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "github-repos-manager-mcp"
+      ],
+      "environment": {
+        "GITHUB_TOKEN": "{env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "enabled": false,
+      "timeout": 30000
+    },
+    "sequential_thinking": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "mcp/sequentialthinking"
+      ],
+      "enabled": true,
+      "timeout": 10000
+    },
+    "memory": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-v",
+        "{machine:mcp-memory}:/data",
+        "mcp/memory"
+      ],
+      "enabled": true,
+      "timeout": 10000
+    },
+    "memory_vector_qdrant": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "QDRANT_URL",
+        "-e",
+        "QDRANT_API_KEY",
+        "mcp/qdrant"
+      ],
+      "environment": {
+        "QDRANT_URL": "{env:QDRANT_URL}",
+        "QDRANT_API_KEY": "{env:QDRANT_API_KEY}"
+      },
+      "enabled": true,
+      "timeout": 10000
+    },
+    "meta_aggregator_magg": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-p",
+        "8090:8000",
+        "ghcr.io/sitbon/magg"
+      ],
+      "enabled": false,
+      "timeout": 30000
+    },
+    "context_manager_llm": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "llm-context"
+      ],
+      "enabled": false,
+      "timeout": 30000
+    },
+    "wikipedia": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "mcp/wikipedia-mcp"
+      ],
+      "enabled": true,
+      "timeout": 10000
+    },
+    "arxiv": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "ARXIV_STORAGE_PATH",
+        "-v",
+        "{machine:arxiv-papers}:/papers",
+        "mcp/arxiv-mcp-server"
+      ],
+      "environment": {
+        "ARXIV_STORAGE_PATH": "/papers"
+      },
+      "enabled": true,
+      "timeout": 10000
+    },
+    "paper_search": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "mcp/paper-search"
+      ],
+      "enabled": true,
+      "timeout": 10000
+    },
+    "hackernews": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "mcp/hackernews-mcp"
+      ],
+      "enabled": true,
+      "timeout": 10000
+    },
+    "research_scraper_firecrawl": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "FIRECRAWL_API_KEY",
+        "mcp/firecrawl"
+      ],
+      "environment": {
+        "FIRECRAWL_API_KEY": "{env:FIRECRAWL_API_KEY}"
+      },
+      "enabled": true,
+      "timeout": 60000
+    },
+    "research_search_searxng": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "--network",
+        "host",
+        "-e",
+        "SEARXNG_ENGINE_API_BASE_URL",
+        "overtlids/mcp-searxng-enhanced"
+      ],
+      "environment": {
+        "SEARXNG_ENGINE_API_BASE_URL": "{env:SEARXNG_BASE_URL}"
+      },
+      "enabled": true,
+      "timeout": 30000
+    },
+    "research_browser_rag": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@apify/mcp-server-rag-web-browser"
+      ],
+      "environment": {
+        "APIFY_TOKEN": "{env:APIFY_TOKEN}"
+      },
+      "enabled": false,
+      "timeout": 30000
+    }
+  },
+  "provider": {
+    "google": {
+      "npm": "@ai-sdk/google",
+      "models": {
+        "gemini-3-pro": {
+          "id": "gemini-3-pro-preview",
+          "name": "Gemini 3 Pro",
+          "release_date": "2025-11-18",
+          "reasoning": true,
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 2,
+            "output": 12,
+            "cache_read": 0.2
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "gemini-3-pro-high": {
+          "id": "gemini-3-pro-preview",
+          "name": "Gemini 3 Pro (High Thinking)",
+          "release_date": "2025-11-18",
+          "reasoning": true,
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 2,
+            "output": 12,
+            "cache_read": 0.2
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "high",
+              "includeThoughts": true
+            }
+          }
+        },
+        "gemini-3-pro-medium": {
+          "id": "gemini-3-pro-preview",
+          "name": "Gemini 3 Pro (Medium Thinking)",
+          "release_date": "2025-11-18",
+          "reasoning": true,
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 2,
+            "output": 12,
+            "cache_read": 0.2
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "medium",
+              "includeThoughts": true
+            }
+          }
+        },
+        "gemini-3-pro-low": {
+          "id": "gemini-3-pro-preview",
+          "name": "Gemini 3 Pro (Low Thinking)",
+          "release_date": "2025-11-18",
+          "reasoning": true,
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 2,
+            "output": 12,
+            "cache_read": 0.2
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "low",
+              "includeThoughts": true
+            }
+          }
+        },
+        "gemini-3-flash": {
+          "id": "gemini-3-flash",
+          "name": "Gemini 3 Flash",
+          "release_date": "2025-12-17",
+          "reasoning": true,
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.5,
+            "output": 3,
+            "cache_read": 0.05
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "gemini-3-flash-high": {
+          "id": "gemini-3-flash",
+          "name": "Gemini 3 Flash (High Thinking)",
+          "release_date": "2025-12-17",
+          "reasoning": true,
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.5,
+            "output": 3,
+            "cache_read": 0.05
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "high",
+              "includeThoughts": true
+            }
+          }
+        },
+        "gemini-3-flash-medium": {
+          "id": "gemini-3-flash",
+          "name": "Gemini 3 Flash (Medium Thinking)",
+          "release_date": "2025-12-17",
+          "reasoning": true,
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.5,
+            "output": 3,
+            "cache_read": 0.05
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "medium",
+              "includeThoughts": true
+            }
+          }
+        },
+        "gemini-3-flash-low": {
+          "id": "gemini-3-flash",
+          "name": "Gemini 3 Flash (Low Thinking)",
+          "release_date": "2025-12-17",
+          "reasoning": true,
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.5,
+            "output": 3,
+            "cache_read": 0.05
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "low",
+              "includeThoughts": true
+            }
+          }
+        },
+        "gemini-2.5-flash": {
+          "id": "gemini-2.5-flash",
+          "name": "Gemini 2.5 Flash",
+          "release_date": "2025-03-20",
+          "reasoning": true,
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.3,
+            "output": 2.5,
+            "cache_read": 0.075
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "audio",
+              "video",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "gemini-2.5-flash-lite": {
+          "id": "gemini-2.5-flash-lite",
+          "name": "Gemini 2.5 Flash Lite",
+          "release_date": "2025-06-17",
+          "reasoning": true,
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.1,
+            "output": 0.4,
+            "cache_read": 0.025
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "audio",
+              "video",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        },
+        "gemini-claude-sonnet-4-5": {
+          "id": "gemini-claude-sonnet-4-5",
+          "name": "Claude Sonnet 4.5",
+          "release_date": "2025-11-18",
+          "reasoning": false,
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cache_read": 0.3
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "tools": {
+            "hackernews": false,
+            "paper_search": false
+          },
+          "_warning": "Google-hosted Claude may have auth issues with antigravity plugin. Prefer native Gemini models or use GitHub Copilot for Claude."
+        },
+        "gemini-claude-sonnet-4-5-thinking": {
+          "id": "gemini-claude-sonnet-4-5-thinking",
+          "name": "Claude Sonnet 4.5 (Thinking)",
+          "release_date": "2025-11-18",
+          "reasoning": true,
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cache_read": 0.3
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "tools": {
+            "hackernews": false,
+            "paper_search": false
+          }
+        },
+        "gemini-claude-sonnet-4-5-thinking-high": {
+          "id": "gemini-claude-sonnet-4-5-thinking",
+          "name": "Claude Sonnet 4.5 (High Thinking)",
+          "release_date": "2025-11-18",
+          "reasoning": true,
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cache_read": 0.3
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 32000,
+              "includeThoughts": true
+            }
+          },
+          "tools": {
+            "hackernews": false,
+            "paper_search": false
+          }
+        },
+        "gemini-claude-sonnet-4-5-thinking-medium": {
+          "id": "gemini-claude-sonnet-4-5-thinking",
+          "name": "Claude Sonnet 4.5 (Medium Thinking)",
+          "release_date": "2025-11-18",
+          "reasoning": true,
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cache_read": 0.3
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 16000,
+              "includeThoughts": true
+            }
+          },
+          "tools": {
+            "hackernews": false,
+            "paper_search": false
+          }
+        },
+        "gemini-claude-sonnet-4-5-thinking-low": {
+          "id": "gemini-claude-sonnet-4-5-thinking",
+          "name": "Claude Sonnet 4.5 (Low Thinking)",
+          "release_date": "2025-11-18",
+          "reasoning": true,
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cache_read": 0.3
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 4000,
+              "includeThoughts": true
+            }
+          },
+          "tools": {
+            "hackernews": false,
+            "paper_search": false
+          }
+        },
+        "gemini-claude-opus-4-5-thinking": {
+          "id": "gemini-claude-opus-4-5-thinking",
+          "name": "Claude Opus 4.5 (Thinking)",
+          "release_date": "2025-11-24",
+          "reasoning": true,
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cache_read": 0.5
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "tools": {
+            "hackernews": false,
+            "paper_search": false
+          }
+        },
+        "gemini-claude-opus-4-5-thinking-high": {
+          "id": "gemini-claude-opus-4-5-thinking",
+          "name": "Claude Opus 4.5 (High Thinking)",
+          "release_date": "2025-11-24",
+          "reasoning": true,
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cache_read": 0.5
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 32000,
+              "includeThoughts": true
+            }
+          },
+          "tools": {
+            "hackernews": false,
+            "paper_search": false
+          }
+        },
+        "gemini-claude-opus-4-5-thinking-medium": {
+          "id": "gemini-claude-opus-4-5-thinking",
+          "name": "Claude Opus 4.5 (Medium Thinking)",
+          "release_date": "2025-11-24",
+          "reasoning": true,
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cache_read": 0.5
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 16000,
+              "includeThoughts": true
+            }
+          },
+          "tools": {
+            "hackernews": false,
+            "paper_search": false
+          }
+        },
+        "gemini-claude-opus-4-5-thinking-low": {
+          "id": "gemini-claude-opus-4-5-thinking",
+          "name": "Claude Opus 4.5 (Low Thinking)",
+          "release_date": "2025-11-24",
+          "reasoning": true,
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cache_read": 0.5
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 4000,
+              "includeThoughts": true
+            }
+          },
+          "tools": {
+            "hackernews": false,
+            "paper_search": false
+          }
+        }
+      }
+    }
+  },
+  "tools": {
+    "context7": true,
+    "gh_grep": true,
+    "brave": false,
+    "duckduckgo": true,
+    "fetch": true,
+    "sequential_thinking": true,
+    "memory": true,
+    "wikipedia": true,
+    "code_interpreter": true,
+    "github": false,
+    "perplexity": true,
+    "obsidian": true,
+    "arxiv": true,
+    "paper_search": true,
+    "hackernews": true
+  },
+  "permission": {
+    "edit": "allow",
+    "bash": "allow",
+    "webfetch": "allow"
+  },
+  "agent": {
+    "build": {
+      "description": "Full-featured development agent with all tools enabled",
+      "mode": "primary",
+      "temperature": 0.3,
+      "model": "github-copilot/gpt-5.1-codex",
+      "tools": {
+        "context7": true,
+        "gh_grep": true,
+        "fetch": true,
+        "wikipedia": true,
+        "duckduckgo": true,
+        "memory": true,
+        "code_interpreter": true,
+        "sequential_thinking": true,
+        "arxiv": true,
+        "paper_search": true,
+        "hackernews": true
+      },
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "webfetch": "allow"
+      }
+    },
+    "plan": {
+      "description": "Planning and analysis agent without file modifications",
+      "mode": "primary",
+      "temperature": 0.1,
+      "model": "github-copilot/claude-haiku-4.5",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "context7": true,
+        "gh_grep": true,
+        "fetch": true,
+        "wikipedia": true,
+        "duckduckgo": true,
+        "memory": true,
+        "sequential_thinking": true,
+        "arxiv": true,
+        "paper_search": true,
+        "hackernews": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "allow"
+      }
+    },
+    "code": {
+      "description": "Code-focused agent for development with GitHub integration",
+      "mode": "subagent",
+      "temperature": 0.2,
+      "model": "github-copilot/gpt-5.1-codex",
+      "tools": {
+        "gh_grep": true,
+        "code_interpreter": true,
+        "github": true,
+        "context7": true
+      },
+      "permission": {
+        "edit": "allow",
+        "bash": {
+          "git *": "ask",
+          "npm *": "allow",
+          "yarn *": "allow",
+          "bun *": "allow",
+          "python *": "allow",
+          "*": "ask"
+        },
+        "webfetch": "deny"
+      }
+    },
+    "research": {
+      "description": "Research-focused agent for documentation and information gathering",
+      "mode": "subagent",
+      "temperature": 0.2,
+      "model": "github-copilot/claude-opus-4.5",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "context7": true,
+        "gh_grep": true,
+        "fetch": true,
+        "wikipedia": true,
+        "duckduckgo": true,
+        "memory": true,
+        "sequential_thinking": true,
+        "arxiv": true,
+        "paper_search": true,
+        "brave": true,
+        "perplexity": true,
+        "hackernews": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "allow"
+      }
+    },
+    "thinking": {
+      "description": "Problem-solving agent using structured reasoning and memory",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "model": "github-copilot/claude-haiku-4.5",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "sequential_thinking": true,
+        "memory": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
+      }
+    },
+    "deep": {
+      "description": "Analyze-first builder with balanced agency - thinks before acting, acts decisively",
+      "mode": "primary",
+      "temperature": 0.3,
+      "model": "github-copilot/claude-sonnet-4.5",
+      "tools": {
+        "context7": true,
+        "gh_grep": true,
+        "fetch": true,
+        "wikipedia": true,
+        "duckduckgo": true,
+        "memory": true,
+        "code_interpreter": true,
+        "sequential_thinking": true,
+        "arxiv": true,
+        "paper_search": true,
+        "hackernews": true
+      },
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "webfetch": "allow"
+      }
+    },
+    "know": {
+      "description": "Knowledge-builder for research workflows and structured knowledge accumulation",
+      "mode": "primary",
+      "temperature": 0.2,
+      "model": "github-copilot/claude-haiku-4.5",
+      "tools": {
+        "write": true,
+        "edit": false,
+        "bash": false,
+        "context7": true,
+        "gh_grep": true,
+        "fetch": true,
+        "wikipedia": true,
+        "duckduckgo": true,
+        "memory": true,
+        "sequential_thinking": true,
+        "arxiv": true,
+        "paper_search": true,
+        "hackernews": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "allow"
+      }
+    },
+    "opencode-config-manager": {
+      "description": "Expert in OpenCode configuration management and MCP server setup",
+      "mode": "primary",
+      "temperature": 0.1,
+      "model": "github-copilot/gpt-5.1-codex",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "list": true,
+        "webfetch": true,
+        "context7": true,
+        "gh_grep": true,
+        "fetch": true,
+        "duckduckgo": true,
+        "memory": true,
+        "sequential_thinking": true
+      },
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "webfetch": "allow"
+      }
+    },
+    "hiker": {
+      "description": "Cyber security lab agent for offensive/defensive research and education",
+      "mode": "primary",
+      "temperature": 0.4,
+      "model": "github-copilot/claude-haiku-4.5",
+      "tools": {
+        "write": true,
+        "edit": false,
+        "bash": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "list": true,
+        "webfetch": true,
+        "context7": true,
+        "gh_grep": true,
+        "fetch": true,
+        "duckduckgo": true,
+        "google_search": true,
+        "memory": true,
+        "sequential_thinking": true,
+        "code_interpreter": false,
+        "wikipedia": true,
+        "arxiv": true,
+        "paper_search": true,
+        "perplexity": true,
+        "hackernews": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "ask",
+        "webfetch": "allow"
+      }
+    },
+    "conductor": {
+      "description": "Primary orchestrator that sequences sub-agents and manages workflow state",
+      "mode": "primary",
+      "temperature": 0.2,
+      "model": "github-copilot/claude-sonnet-4.5",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "sequential_thinking": true,
+        "memory": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
+      }
+    },
+    "scribe": {
+      "description": "Documentation specialist that formats output and maintains logs",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "model": "github-copilot/claude-haiku-4.5",
+      "tools": {
+        "write": true,
+        "read": true,
+        "glob": true,
+        "grep": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
+      }
+    },
+    "policy": {
+      "description": "Validator agent that checks scope, safety, and standards",
+      "mode": "subagent",
+      "temperature": 0.1,
+      "model": "github-copilot/claude-haiku-4.5",
+      "tools": {
+        "write": false,
+        "read": true,
+        "glob": true,
+        "grep": true
+      },
+      "permission": {
+        "edit": "deny",
+        "bash": "deny",
+        "webfetch": "deny"
+      }
+    }
+  },
+  "formatter": {
+    "prettier": {
+      "disabled": false
+    },
+    "biome": {
+      "disabled": false
+    }
+  }
+}
