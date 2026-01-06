@@ -84,3 +84,6 @@ scratch.md
 
 # Temporary working folders (not committed)
 temp/
+# Auth files (absolute paths - NEVER commit)
+auth.json
+antigravity-accounts.json
