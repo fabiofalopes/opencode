@@ -8,7 +8,7 @@
     "docs/SYSTEM_CONTEXT.md",
     "docs/MCP_TOOLS.md"
   ],
-  "model": "github-copilot/gpt-5.1-codex",
+  "model": "{profile:model}",
   "mcp": {
     "ollama_bridge": {
       "type": "local",
@@ -1062,7 +1062,7 @@
       "description": "Full-featured development agent with all tools enabled",
       "mode": "primary",
       "temperature": 0.3,
-      "model": "github-copilot/gpt-5.1-codex",
+      "model": "{profile:agent.build.model}",
       "tools": {
         "context7": true,
         "gh_grep": true,
@@ -1086,7 +1086,7 @@
       "description": "Planning and analysis agent without file modifications",
       "mode": "primary",
       "temperature": 0.1,
-      "model": "github-copilot/claude-haiku-4.5",
+      "model": "{profile:agent.plan.model}",
       "tools": {
         "write": false,
         "edit": false,
@@ -1112,7 +1112,7 @@
       "description": "Code-focused agent for development with GitHub integration",
       "mode": "subagent",
       "temperature": 0.2,
-      "model": "github-copilot/gpt-5.1-codex",
+      "model": "{profile:agent.code.model}",
       "tools": {
         "gh_grep": true,
         "code_interpreter": true,
@@ -1136,7 +1136,7 @@
       "description": "Research-focused agent for documentation and information gathering",
       "mode": "subagent",
       "temperature": 0.2,
-      "model": "github-copilot/claude-opus-4.5",
+      "model": "{profile:agent.research.model}",
       "tools": {
         "write": false,
         "edit": false,
@@ -1164,7 +1164,7 @@
       "description": "Problem-solving agent using structured reasoning and memory",
       "mode": "subagent",
       "temperature": 0.1,
-      "model": "github-copilot/claude-haiku-4.5",
+      "model": "{profile:agent.thinking.model}",
       "tools": {
         "write": false,
         "edit": false,
@@ -1182,7 +1182,7 @@
       "description": "Analyze-first builder with balanced agency - thinks before acting, acts decisively",
       "mode": "primary",
       "temperature": 0.3,
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "{profile:agent.deep.model}",
       "tools": {
         "context7": true,
         "gh_grep": true,
@@ -1206,7 +1206,7 @@
       "description": "Knowledge-builder for research workflows and structured knowledge accumulation",
       "mode": "primary",
       "temperature": 0.2,
-      "model": "github-copilot/claude-haiku-4.5",
+      "model": "{profile:agent.know.model}",
       "tools": {
         "write": true,
         "edit": false,
@@ -1232,7 +1232,7 @@
       "description": "Expert in OpenCode configuration management and MCP server setup",
       "mode": "primary",
       "temperature": 0.1,
-      "model": "github-copilot/gpt-5.1-codex",
+      "model": "{profile:agent.opencode-config-manager.model}",
       "tools": {
         "write": true,
         "edit": true,
@@ -1259,7 +1259,7 @@
       "description": "Cyber security lab agent for offensive/defensive research and education",
       "mode": "primary",
       "temperature": 0.4,
-      "model": "github-copilot/claude-haiku-4.5",
+      "model": "{profile:agent.hiker.model}",
       "tools": {
         "write": true,
         "edit": false,
@@ -1293,7 +1293,7 @@
       "description": "Primary orchestrator that sequences sub-agents and manages workflow state",
       "mode": "primary",
       "temperature": 0.2,
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "{profile:agent.conductor.model}",
       "tools": {
         "write": false,
         "edit": false,
@@ -1311,7 +1311,7 @@
       "description": "Documentation specialist that formats output and maintains logs",
       "mode": "subagent",
       "temperature": 0.1,
-      "model": "github-copilot/claude-haiku-4.5",
+      "model": "{profile:agent.scribe.model}",
       "tools": {
         "write": true,
         "read": true,
@@ -1328,7 +1328,7 @@
       "description": "Validator agent that checks scope, safety, and standards",
       "mode": "subagent",
       "temperature": 0.1,
-      "model": "github-copilot/claude-haiku-4.5",
+      "model": "{profile:agent.policy.model}",
       "tools": {
         "write": false,
         "read": true,

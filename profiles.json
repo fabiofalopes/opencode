@@ -1,24 +1,24 @@
 {
-  "zens": {
-    "description": "Primary: OpenCode Zens (Free, Unlimited - Minimax & GLM)",
-    "model": "opencode/minimax-m2.1",
+  "zai": {
+    "description": "PRIMARY: ZAI Coding Plan (Free - Minimax, GLM 4.7, Grok)",
+    "model": "opencode/glm-4.7",
     "agents": {
       "build": "opencode/minimax-m2.1",
       "plan": "opencode/glm-4.7",
       "code": "opencode/minimax-m2.1",
       "research": "opencode/glm-4.7",
       "thinking": "opencode/glm-4.7",
-      "deep": "opencode/minimax-m2.1",
+      "deep": "opencode/glm-4.7",
       "know": "opencode/glm-4.7",
       "opencode-config-manager": "opencode/minimax-m2.1",
       "hiker": "opencode/glm-4.7",
-      "conductor": "opencode/minimax-m2.1",
+      "conductor": "opencode/glm-4.7",
       "scribe": "opencode/glm-4.7",
       "policy": "opencode/glm-4.7"
     }
   },
   "gemini": {
-    "description": "Secondary: Google Gemini (Native models only - Free)",
+    "description": "SECONDARY: Google Gemini (Native models only - Free)",
     "model": "google/gemini-3-pro",
     "agents": {
       "build": "google/gemini-3-pro",
@@ -36,7 +36,7 @@
     }
   },
   "copilot": {
-    "description": "Tertiary: GitHub Copilot (Subscription - Diversified models)",
+    "description": "TERTIARY: GitHub Copilot (Subscription - Diversified models)",
     "model": "github-copilot/gpt-5.1-codex",
     "agents": {
       "build": "github-copilot/gpt-5.1-codex",
@@ -53,8 +53,8 @@
       "policy": "github-copilot/claude-haiku-4.5"
     }
   },
-  "grok": {
-    "description": "Fallback: OpenCode Grok (Free/Unlimited - Single model)",
+  "zai-fallback": {
+    "description": "FALLBACK: ZAI Grok (Fast, single model - Free)",
     "model": "opencode/grok-codefast-2",
     "agents": {
       "build": "opencode/grok-codefast-2",

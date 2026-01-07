@@ -7,27 +7,12 @@
       "-i",
       "--rm",
       "-v",
-      "/home/fabio/mcp-code:/workspace",
+      "/home/dsi/mcp-code:/workspace",
+      "-v",
+      "/home/dsi/.config/opencode:/opencode-config",
       "mcp/mcp-code-interpreter"
     ],
     "enabled": true,
-    "timeout": 10000
-  },
-  "github": {
-    "type": "local",
-    "command": [
-      "docker",
-      "run",
-      "-i",
-      "--rm",
-      "-e",
-      "GITHUB_PERSONAL_ACCESS_TOKEN",
-      "ghcr.io/github/github-mcp-server"
-    ],
-    "environment": {
-      "GITHUB_PERSONAL_ACCESS_TOKEN": "{env:GITHUB_PERSONAL_ACCESS_TOKEN}"
-    },
-    "enabled": false,
     "timeout": 10000
   }
 }

@@ -16,6 +16,63 @@ The solution: A template system with machine profiles. Your `opencode.json` is g
 
 ---
 
+## Prerequisites: Node.js and npm
+
+The configuration scripts require Node.js and npm. If they're not installed:
+
+### Option 1: Using nvm (Recommended, No Sudo Required)
+
+```bash
+# Install nvm (Node Version Manager)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# Reload shell or run:
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Install Node.js 22 LTS
+nvm install 22
+nvm use 22
+
+# Verify installation
+node --version  # Should show v22.x.x
+npm --version   # Should show 10.x.x
+```
+
+**To make nvm permanent**, add to your shell configuration:
+```bash
+# Add to ~/.bashrc or ~/.zshrc
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+```
+
+### Option 2: System-wide Installation (Requires Sudo)
+
+**Ubuntu/Debian:**
+```bash
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+**macOS:**
+```bash
+brew install node
+```
+
+**After installing Node.js:**
+
+```bash
+# Navigate to config directory
+cd ~/.config/opencode
+
+# Install dependencies
+npm install
+```
+
+---
+
+---
+
 ## I'm Using macOS
 
 ### Quick Start
@@ -312,6 +369,67 @@ Regenerate it:
 ```bash
 npm run init:machine -- --machine=YOUR_MACHINE_NAME
 ```
+
+### Linux VM / Server Setup
+
+If you're setting up OpenCode on a Linux VM or server:
+
+1. **Check Node.js is available:**
+   ```bash
+   node --version
+   npm --version
+   ```
+
+2. **If not installed, use nvm (no sudo required):**
+   ```bash
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+   export NVM_DIR="$HOME/.nvm"
+   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+   nvm install 22
+   nvm use 22
+   ```
+
+3. **Create machine profile in `machines.json`:**
+   ```json
+   {
+     "linux-vm": {
+       "platform": "linux",
+       "hostname": "your-server-hostname",
+       "description": "Your Linux VM/Server",
+       "paths": {
+         "home": "/home/your-username",
+         "mcp-memory": "/home/your-username/mcp-memory",
+         "mcp-code": "/home/your-username/mcp-code",
+         "arxiv-papers": "/home/your-username/arxiv-papers",
+         "obsidian-vault": "/home/your-username/Documents/Obsidian"
+       },
+       "mcps": {
+         "memory": true,
+         "code_interpreter": true,
+         "obsidian": false,
+         "github": false
+       }
+     }
+   }
+   ```
+
+4. **Initialize configuration:**
+   ```bash
+   npm run init:machine -- --machine=linux-vm
+   ```
+
+5. **Create required directories:**
+   ```bash
+   mkdir -p ~/mcp-memory ~/mcp-code ~/arxiv-papers ~/Documents/Obsidian
+   ```
+
+6. **Verify Docker is running** (required for MCP servers):
+   ```bash
+   sudo systemctl status docker
+   # If not running:
+   sudo systemctl start docker
+   sudo systemctl enable docker
+   ```
 
 ---
 

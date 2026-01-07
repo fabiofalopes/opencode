@@ -37,5 +37,23 @@
       "github": false
     }
   },
-  "_active": "macos-fabio"
+  "linux-vm": {
+    "platform": "linux",
+    "hostname": "zabbix",
+    "description": "Linux VM Server - Zabbix monitoring machine",
+    "paths": {
+      "home": "/home/dsi",
+      "mcp-memory": "/home/dsi/mcp-memory",
+      "mcp-code": "/home/dsi/mcp-code",
+      "arxiv-papers": "/home/dsi/arxiv-papers",
+      "obsidian-vault": "/home/dsi/Documents/Obsidian"
+    },
+    "mcps": {
+      "memory": true,
+      "code_interpreter": true,
+      "obsidian": false,
+      "github": false
+    }
+  },
+  "_active": "linux-vm"
 }

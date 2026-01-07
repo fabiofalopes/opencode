@@ -1,12 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-google-antigravity-auth"],
+  "plugin": [
+    "opencode-google-antigravity-auth"
+  ],
   "instructions": [
     "AGENTS.md",
     "docs/SYSTEM_CONTEXT.md",
     "docs/MCP_TOOLS.md"
   ],
-  "model": "github-copilot/claude-sonnet-4.5",
+  "model": "{profile:model}",
   "mcp": {},
   "provider": {
     "google": {
@@ -17,105 +19,331 @@
           "name": "Gemini 3 Pro",
           "release_date": "2025-11-18",
           "reasoning": true,
-          "limit": { "context": 1000000, "output": 64000 },
-          "cost": { "input": 2, "output": 12, "cache_read": 0.2 },
-          "modalities": { "input": ["text", "image", "video", "audio", "pdf"], "output": ["text"] }
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 2,
+            "output": 12,
+            "cache_read": 0.2
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
         },
         "gemini-3-pro-high": {
           "id": "gemini-3-pro-preview",
           "name": "Gemini 3 Pro (High Thinking)",
           "release_date": "2025-11-18",
           "reasoning": true,
-          "limit": { "context": 1000000, "output": 64000 },
-          "cost": { "input": 2, "output": 12, "cache_read": 0.2 },
-          "modalities": { "input": ["text", "image", "video", "audio", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingLevel": "high", "includeThoughts": true } }
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 2,
+            "output": 12,
+            "cache_read": 0.2
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "high",
+              "includeThoughts": true
+            }
+          }
         },
         "gemini-3-pro-medium": {
           "id": "gemini-3-pro-preview",
           "name": "Gemini 3 Pro (Medium Thinking)",
           "release_date": "2025-11-18",
           "reasoning": true,
-          "limit": { "context": 1000000, "output": 64000 },
-          "cost": { "input": 2, "output": 12, "cache_read": 0.2 },
-          "modalities": { "input": ["text", "image", "video", "audio", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingLevel": "medium", "includeThoughts": true } }
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 2,
+            "output": 12,
+            "cache_read": 0.2
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "medium",
+              "includeThoughts": true
+            }
+          }
         },
         "gemini-3-pro-low": {
           "id": "gemini-3-pro-preview",
           "name": "Gemini 3 Pro (Low Thinking)",
           "release_date": "2025-11-18",
           "reasoning": true,
-          "limit": { "context": 1000000, "output": 64000 },
-          "cost": { "input": 2, "output": 12, "cache_read": 0.2 },
-          "modalities": { "input": ["text", "image", "video", "audio", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingLevel": "low", "includeThoughts": true } }
+          "limit": {
+            "context": 1000000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 2,
+            "output": 12,
+            "cache_read": 0.2
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "low",
+              "includeThoughts": true
+            }
+          }
         },
         "gemini-3-flash": {
           "id": "gemini-3-flash",
           "name": "Gemini 3 Flash",
           "release_date": "2025-12-17",
           "reasoning": true,
-          "limit": { "context": 1048576, "output": 65536 },
-          "cost": { "input": 0.5, "output": 3, "cache_read": 0.05 },
-          "modalities": { "input": ["text", "image", "video", "audio", "pdf"], "output": ["text"] }
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.5,
+            "output": 3,
+            "cache_read": 0.05
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
         },
         "gemini-3-flash-high": {
           "id": "gemini-3-flash",
           "name": "Gemini 3 Flash (High Thinking)",
           "release_date": "2025-12-17",
           "reasoning": true,
-          "limit": { "context": 1048576, "output": 65536 },
-          "cost": { "input": 0.5, "output": 3, "cache_read": 0.05 },
-          "modalities": { "input": ["text", "image", "video", "audio", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingLevel": "high", "includeThoughts": true } }
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.5,
+            "output": 3,
+            "cache_read": 0.05
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "high",
+              "includeThoughts": true
+            }
+          }
         },
         "gemini-3-flash-medium": {
           "id": "gemini-3-flash",
           "name": "Gemini 3 Flash (Medium Thinking)",
           "release_date": "2025-12-17",
           "reasoning": true,
-          "limit": { "context": 1048576, "output": 65536 },
-          "cost": { "input": 0.5, "output": 3, "cache_read": 0.05 },
-          "modalities": { "input": ["text", "image", "video", "audio", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingLevel": "medium", "includeThoughts": true } }
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.5,
+            "output": 3,
+            "cache_read": 0.05
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "medium",
+              "includeThoughts": true
+            }
+          }
         },
         "gemini-3-flash-low": {
           "id": "gemini-3-flash",
           "name": "Gemini 3 Flash (Low Thinking)",
           "release_date": "2025-12-17",
           "reasoning": true,
-          "limit": { "context": 1048576, "output": 65536 },
-          "cost": { "input": 0.5, "output": 3, "cache_read": 0.05 },
-          "modalities": { "input": ["text", "image", "video", "audio", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingLevel": "low", "includeThoughts": true } }
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.5,
+            "output": 3,
+            "cache_read": 0.05
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "video",
+              "audio",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingLevel": "low",
+              "includeThoughts": true
+            }
+          }
         },
         "gemini-2.5-flash": {
           "id": "gemini-2.5-flash",
           "name": "Gemini 2.5 Flash",
           "release_date": "2025-03-20",
           "reasoning": true,
-          "limit": { "context": 1048576, "output": 65536 },
-          "cost": { "input": 0.3, "output": 2.5, "cache_read": 0.075 },
-          "modalities": { "input": ["text", "image", "audio", "video", "pdf"], "output": ["text"] }
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.3,
+            "output": 2.5,
+            "cache_read": 0.075
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "audio",
+              "video",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
         },
         "gemini-2.5-flash-lite": {
           "id": "gemini-2.5-flash-lite",
           "name": "Gemini 2.5 Flash Lite",
           "release_date": "2025-06-17",
           "reasoning": true,
-          "limit": { "context": 1048576, "output": 65536 },
-          "cost": { "input": 0.1, "output": 0.4, "cache_read": 0.025 },
-          "modalities": { "input": ["text", "image", "audio", "video", "pdf"], "output": ["text"] }
+          "limit": {
+            "context": 1048576,
+            "output": 65536
+          },
+          "cost": {
+            "input": 0.1,
+            "output": 0.4,
+            "cache_read": 0.025
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "audio",
+              "video",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          }
         },
         "gemini-claude-sonnet-4-5": {
           "id": "gemini-claude-sonnet-4-5",
           "name": "Claude Sonnet 4.5",
           "release_date": "2025-11-18",
           "reasoning": false,
-          "limit": { "context": 200000, "output": 64000 },
-          "cost": { "input": 3, "output": 15, "cache_read": 0.3 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cache_read": 0.3
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
           "tools": {
             "hackernews": false,
             "paper_search": false
@@ -127,9 +355,25 @@
           "name": "Claude Sonnet 4.5 (Thinking)",
           "release_date": "2025-11-18",
           "reasoning": true,
-          "limit": { "context": 200000, "output": 64000 },
-          "cost": { "input": 3, "output": 15, "cache_read": 0.3 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cache_read": 0.3
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
           "tools": {
             "hackernews": false,
             "paper_search": false
@@ -140,10 +384,31 @@
           "name": "Claude Sonnet 4.5 (High Thinking)",
           "release_date": "2025-11-18",
           "reasoning": true,
-          "limit": { "context": 200000, "output": 64000 },
-          "cost": { "input": 3, "output": 15, "cache_read": 0.3 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingBudget": 32000, "includeThoughts": true } },
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cache_read": 0.3
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 32000,
+              "includeThoughts": true
+            }
+          },
           "tools": {
             "hackernews": false,
             "paper_search": false
@@ -154,10 +419,31 @@
           "name": "Claude Sonnet 4.5 (Medium Thinking)",
           "release_date": "2025-11-18",
           "reasoning": true,
-          "limit": { "context": 200000, "output": 64000 },
-          "cost": { "input": 3, "output": 15, "cache_read": 0.3 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingBudget": 16000, "includeThoughts": true } },
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cache_read": 0.3
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 16000,
+              "includeThoughts": true
+            }
+          },
           "tools": {
             "hackernews": false,
             "paper_search": false
@@ -168,10 +454,31 @@
           "name": "Claude Sonnet 4.5 (Low Thinking)",
           "release_date": "2025-11-18",
           "reasoning": true,
-          "limit": { "context": 200000, "output": 64000 },
-          "cost": { "input": 3, "output": 15, "cache_read": 0.3 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingBudget": 4000, "includeThoughts": true } },
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 3,
+            "output": 15,
+            "cache_read": 0.3
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 4000,
+              "includeThoughts": true
+            }
+          },
           "tools": {
             "hackernews": false,
             "paper_search": false
@@ -182,9 +489,25 @@
           "name": "Claude Opus 4.5 (Thinking)",
           "release_date": "2025-11-24",
           "reasoning": true,
-          "limit": { "context": 200000, "output": 64000 },
-          "cost": { "input": 5, "output": 25, "cache_read": 0.5 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cache_read": 0.5
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
           "tools": {
             "hackernews": false,
             "paper_search": false
@@ -195,10 +518,31 @@
           "name": "Claude Opus 4.5 (High Thinking)",
           "release_date": "2025-11-24",
           "reasoning": true,
-          "limit": { "context": 200000, "output": 64000 },
-          "cost": { "input": 5, "output": 25, "cache_read": 0.5 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingBudget": 32000, "includeThoughts": true } },
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cache_read": 0.5
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 32000,
+              "includeThoughts": true
+            }
+          },
           "tools": {
             "hackernews": false,
             "paper_search": false
@@ -209,10 +553,31 @@
           "name": "Claude Opus 4.5 (Medium Thinking)",
           "release_date": "2025-11-24",
           "reasoning": true,
-          "limit": { "context": 200000, "output": 64000 },
-          "cost": { "input": 5, "output": 25, "cache_read": 0.5 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingBudget": 16000, "includeThoughts": true } },
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cache_read": 0.5
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 16000,
+              "includeThoughts": true
+            }
+          },
           "tools": {
             "hackernews": false,
             "paper_search": false
@@ -223,10 +588,31 @@
           "name": "Claude Opus 4.5 (Low Thinking)",
           "release_date": "2025-11-24",
           "reasoning": true,
-          "limit": { "context": 200000, "output": 64000 },
-          "cost": { "input": 5, "output": 25, "cache_read": 0.5 },
-          "modalities": { "input": ["text", "image", "pdf"], "output": ["text"] },
-          "options": { "thinkingConfig": { "thinkingBudget": 4000, "includeThoughts": true } },
+          "limit": {
+            "context": 200000,
+            "output": 64000
+          },
+          "cost": {
+            "input": 5,
+            "output": 25,
+            "cache_read": 0.5
+          },
+          "modalities": {
+            "input": [
+              "text",
+              "image",
+              "pdf"
+            ],
+            "output": [
+              "text"
+            ]
+          },
+          "options": {
+            "thinkingConfig": {
+              "thinkingBudget": 4000,
+              "includeThoughts": true
+            }
+          },
           "tools": {
             "hackernews": false,
             "paper_search": false
@@ -262,7 +648,7 @@
       "description": "Full-featured development agent with all tools enabled",
       "mode": "primary",
       "temperature": 0.3,
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "{profile:agent.build.model}",
       "tools": {
         "context7": true,
         "gh_grep": true,
@@ -286,7 +672,7 @@
       "description": "Planning and analysis agent without file modifications",
       "mode": "primary",
       "temperature": 0.1,
-      "model": "github-copilot/claude-haiku-4.5",
+      "model": "{profile:agent.plan.model}",
       "tools": {
         "write": false,
         "edit": false,
@@ -312,7 +698,7 @@
       "description": "Code-focused agent for development with GitHub integration",
       "mode": "subagent",
       "temperature": 0.2,
-      "model": "github-copilot/gpt-5.1-codex",
+      "model": "{profile:agent.code.model}",
       "tools": {
         "gh_grep": true,
         "code_interpreter": true,
@@ -336,7 +722,7 @@
       "description": "Research-focused agent for documentation and information gathering",
       "mode": "subagent",
       "temperature": 0.2,
-      "model": "github-copilot/claude-opus-4.5",
+      "model": "{profile:agent.research.model}",
       "tools": {
         "write": false,
         "edit": false,
@@ -364,7 +750,7 @@
       "description": "Problem-solving agent using structured reasoning and memory",
       "mode": "subagent",
       "temperature": 0.1,
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "{profile:agent.thinking.model}",
       "tools": {
         "write": false,
         "edit": false,
@@ -382,7 +768,7 @@
       "description": "Analyze-first builder with balanced agency - thinks before acting, acts decisively",
       "mode": "primary",
       "temperature": 0.3,
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "{profile:agent.deep.model}",
       "tools": {
         "context7": true,
         "gh_grep": true,
@@ -406,7 +792,7 @@
       "description": "Knowledge-builder for research workflows and structured knowledge accumulation",
       "mode": "primary",
       "temperature": 0.2,
-      "model": "github-copilot/claude-haiku-4.5",
+      "model": "{profile:agent.know.model}",
       "tools": {
         "write": true,
         "edit": false,
@@ -432,7 +818,7 @@
       "description": "Expert in OpenCode configuration management and MCP server setup",
       "mode": "primary",
       "temperature": 0.1,
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "{profile:agent.opencode-config-manager.model}",
       "tools": {
         "write": true,
         "edit": true,
@@ -459,7 +845,7 @@
       "description": "Cyber security lab agent for offensive/defensive research and education",
       "mode": "primary",
       "temperature": 0.4,
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "{profile:agent.hiker.model}",
       "tools": {
         "write": true,
         "edit": false,
@@ -493,7 +879,7 @@
       "description": "Primary orchestrator that sequences sub-agents and manages workflow state",
       "mode": "primary",
       "temperature": 0.2,
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "{profile:agent.conductor.model}",
       "tools": {
         "write": false,
         "edit": false,
@@ -511,7 +897,7 @@
       "description": "Documentation specialist that formats output and maintains logs",
       "mode": "subagent",
       "temperature": 0.1,
-      "model": "github-copilot/claude-haiku-4.5",
+      "model": "{profile:agent.scribe.model}",
       "tools": {
         "write": true,
         "read": true,
@@ -528,7 +914,7 @@
       "description": "Validator agent that checks scope, safety, and standards",
       "mode": "subagent",
       "temperature": 0.1,
-      "model": "github-copilot/claude-haiku-4.5",
+      "model": "{profile:agent.policy.model}",
       "tools": {
         "write": false,
         "read": true,
