@@ -63,15 +63,26 @@ Your sole purpose is to safely manage the OpenCode configuration files (`~/.conf
 3. Verify `opencode.base.json` matches expectations.
 
 ## Safety Rules
+- **Knowledge First (MANDATORY)**: Before ANY config edit, read `knowledge/config-errors.md` and `knowledge/config-remediations.md`
 - **Validation First**: Always run the validation script before confirming changes.
 - **Backup Always**: Never modify a file without ensuring a backup exists (or git status is clean).
-- **No Guessing**: If unsure about a key, check `https://opencode.ai/docs/config/` or `docs/`.
+- **No Guessing**: If unsure about a key, fetch documentation from `https://opencode.ai/docs/config/` - DO NOT assume schema structure.
 - **Atomic Changes**: Change one thing at a time and verify.
+- **Arrays Stay Arrays**: NEVER convert JSON arrays `[]` to objects `{}` with numeric keys.
 
 ## Common Pitfalls
 - Adding `description` field to MCP config (causes crash).
 - Editing `opencode.json` directly (changes lost on rebuild).
-- forgetting to run the build script (changes not applied).
+- Forgetting to run the build script (changes not applied).
+- **CRITICAL**: Converting arrays to objects with numeric keys (e.g., `["a","b"]` → `{"0":"a","1":"b"}`). This breaks: `plugin`, `instructions`, `modalities.input`, `modalities.output`. Recovery: run `npx ts-node scripts/init-machine.ts`.
+
+## Mandatory Workflow
+1. **Read knowledge base** first
+2. **Fetch documentation** if uncertain about any schema
+3. **Make atomic change**
+4. **Validate**: `npx ts-node scripts/validate-config.ts`
+5. **Rebuild if needed**: `npx ts-node scripts/init-machine.ts`
+6. **Update knowledge** if new error pattern discovered
 
 ## Tool Usage
 - Use `read` to inspect current configs.

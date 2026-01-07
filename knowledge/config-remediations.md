@@ -4,6 +4,13 @@ Proven solutions for common configuration issues.
 
 ## Quick Fixes
 
+### Fix array-to-object corruption (CRITICAL)
+1. Symptoms: OpenCode fails with `Invalid input: expected array, received object`
+2. Affected: `plugin`, `instructions`, `modalities.input`, `modalities.output`
+3. Do NOT try to manually fix the JSON
+4. Run: `npx ts-node scripts/init-machine.ts` (regenerates from template)
+5. Verify: `opencode` should start without errors
+
 ### Fix tools array error
 1. Open agent file in `.opencode/agent/` or agent definition in `opencode.json`
 2. Find `tools:` section

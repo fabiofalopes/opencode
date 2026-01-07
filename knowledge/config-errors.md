@@ -24,6 +24,27 @@ This file documents known error patterns and their root causes.
 - **Error:** `description is required`
 - **Cause:** Agent frontmatter missing required description field
 
+### array-converted-to-object (CRITICAL)
+- **Error:** `Invalid input: expected array, received object`
+- **Cause:** JSON manipulation that converts arrays to objects with numeric keys
+- **Affected Fields:** `plugin`, `instructions`, `modalities.input`, `modalities.output`
+- **Bad:**
+  ```json
+  "plugin": {"0": "opencode-google-antigravity-auth"}
+  "modalities": {"input": {"0": "text", "1": "image"}}
+  ```
+- **Good:**
+  ```json
+  "plugin": ["opencode-google-antigravity-auth"]
+  "modalities": {"input": ["text", "image"]}
+  ```
+- **Root Cause:** Some JSON parsing/stringify operations or manual edits convert `[]` arrays to `{}` objects with index keys
+- **Prevention:** 
+  1. NEVER edit `opencode.json` directly - use `init-machine.ts` to regenerate from template
+  2. If editing template, verify arrays remain arrays after save
+  3. Always run `npx ts-node scripts/validate-config.ts` after ANY config change
+- **Recovery:** Run `npx ts-node scripts/init-machine.ts` to regenerate from template
+
 ## Path Errors
 
 ### linux-paths-on-macos
